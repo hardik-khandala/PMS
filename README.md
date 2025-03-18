@@ -1,7 +1,5 @@
 # Performance Management System
  
-This system helps organizations track, evaluate, and improve employee performance through periodic reviews and feedback. 🚀
- 
 ## 1. Case Study Background:
  
 Organizations need an efficient way to assess employee performance, set goals, and provide feedback for professional growth. This system automates performance evaluations, reducing manual work and improving transparency.
