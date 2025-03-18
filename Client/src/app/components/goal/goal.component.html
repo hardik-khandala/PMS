@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="text-white flex flex-col items-center mt-10 px-5">
+
+    <div class="w-full max-w-7xl overflow-x-auto bg-gray-800 rounded-lg shadow-lg mt-10">
+        <div class="flex justify-between px-6 py-3 bg-indigo-500 text-black rounded-t-lg">
+            <h2 class="font-bold text-xl">Goal List</h2>
+            <button [routerLink]="['/register']"
+                class="bg-transparent hover:bg-gray-700 hover:text-indigo-500 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out">
+                <i class="fa-solid fa-plus"></i> Add Goal
+            </button>
+        </div>
+        <table class="w-full border border-gray-700 rounded-md text-center">
+            <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
+                <tr>
+                    <th class="px-6 py-3 border-b border-gray-600">Goal ID</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Title</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Details</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Status</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Created At</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Due Date</th>
+                    <th class="px-6 py-3 border-b border-gray-600">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of goalList" class="odd:bg-gray-700 even:bg-gray-600">
+
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.goalId }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.title }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.detail }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.status }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.createdAt | date }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">{{ item.dueDate | date }}</td>
+                    <td class="px-6 py-3 border-b border-gray-600">
+                        <button
+                            class="bg-transparent hover:bg-gray-700 text-yellow-500 hover:text-yellow-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                            (click)="edit(item.goalId)">
+                            <i class="fa-solid fa-pen"></i> Edit
+                        </button>
+                        <button
+                            class="bg-transparent hover:bg-gray-700 text-red-500 hover:text-red-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                            (click)="delete(item.goalId)">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

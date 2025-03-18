@@ -1,0 +1,115 @@
+USE PMS
+CREATE TABLE Department(
+	deptId INT IDENTITY(1,1) PRIMARY KEY,
+	deptName NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE RoleTable(
+	roleId INT IDENTITY(1,1) PRIMARY KEY,
+	roleName NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Employees(
+	empId INT IDENTITY(1,1) PRIMARY KEY, 
+	empName NVARCHAR(50) NOT NULL,
+	userName NVARCHAR(50) UNIQUE NOT NULL,
+	email NVARCHAR(50) UNIQUE NOT NULL,
+	passwordHash NVARCHAR(50) NOT NULL,
+	deptId INT FOREIGN KEY REFERENCES Department(deptId) NOT NULL,
+	roleId INT FOREIGN KEY REFERENCES RoleTable(roleId) NOT NULL,
+	managerId INT FOREIGN KEY REFERENCES Employees(empId),
+	joiningDate DATETIME DEFAULT GETDATE(),
+	isDeleted BIT DEFAULT 0
+);
+
+CREATE TABLE PredefinedCriteria(
+	criteriaId INT IDENTITY(1,1) PRIMARY KEY,
+	criteriaName NVARCHAR(255) NOT NULL,
+	details NVARCHAR(255) NOT NULL,
+	createdBy INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	createdAt DATE NOT NULL DEFAULT GETDATE(),
+	isDeleted BIT DEFAULT 0,
+	modifyBy INT FOREIGN KEY REFERENCES Employees(empId),
+	modifyAt DATE
+);
+
+CREATE TABLE StatusTable(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	status NVARCHAR(255) UNIQUE NOT NULL,
+	createdBy INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	createdAt DATE DEFAULT GETDATE(),
+	isDeleted BIT DEFAULT 0
+);
+
+CREATE TABLE PerfomanceReview(
+	reviewId INT IDENTITY(1,1) PRIMARY KEY,
+	empId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	managerId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	startDate DATE NOT NULL,
+	endDate DATE NOT NULL,
+	criteriaId INT FOREIGN KEY REFERENCES PredefinedCriteria(criteriaId) NOT NULL,
+	selfRating INT NOT NULL,
+	strength NVARCHAR(255) NOT NULL,
+	improvement NVARCHAR(255) NOT NULL,
+	statusId INT FOREIGN KEY REFERENCES StatusTable(Id) NOT NULL,
+	managerRating INT,
+	managerFeedback NVARCHAR(255),
+	createdAt DATETIME DEFAULT GETDATE(),
+	createdBy INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	isDeleted BIT DEFAULT 0,
+	modifyBy INT FOREIGN KEY REFERENCES Employees(empId),
+	modifyAt DATETIME
+);
+
+CREATE TABLE Goal(
+	goalId INT IDENTITY(1,1) PRIMARY KEY,
+	empId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	title NVARCHAR(255) NOT NULL,
+	detail NVARCHAR(255) NOT NULL,
+	statusId INT FOREIGN KEY REFERENCES StatusTable(Id) NOT NULL,
+	createdBy INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	createdAt DATE NOT NULL,
+	isDeleted BIT DEFAULT 0,
+	modifyBy INT FOREIGN KEY REFERENCES Employees(empId),
+	modifyAt DATE
+)
+
+CREATE TABlE Notification(
+	notificationId INT IDENTITY(1,1) PRIMARY KEY,
+	empId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+	message NVARCHAR(255) NOT NULL,
+	createdAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE AuditLogs(
+    logId INT IDENTITY(1,1) PRIMARY KEY,
+    empId INT FOREIGN KEY REFERENCES Employees(empId),
+    action NVARCHAR(255) NOT NULL,
+    tableName NVARCHAR(50) NOT NULL,
+    oldValue NVARCHAR(MAX),
+    newValue NVARCHAR(MAX),
+    changedBy INT FOREIGN KEY REFERENCES Employees(empId),
+    changedAt DATETIME DEFAULT GETDATE()
+);
+
+
+CREATE TABLE Feedback(
+    feedbackId INT IDENTITY(1,1) PRIMARY KEY,
+    senderId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+    receiverId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
+    message NVARCHAR(255) NOT NULL,
+    createdAt DATETIME DEFAULT GETDATE()
+);
+
+
+SELECT * FROM Department
+SELECT * FROM RoleTable
+SELECT * FROM Employees
+SELECT * FROM PerfomanceReview
+SELECT * FROM PredefinedCriteria
+SELECT * FROM StatusTable
+SELECT * FROM Goal
+SELECT * FROM Notification
+SELECT * FROM AuditLogs
+SELECT * FROM Feedback
+
