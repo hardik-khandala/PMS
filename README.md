@@ -96,27 +96,16 @@ Every review logs:
 | Error Message | Error Control ID |
 |---------------|------------------|
 | "No performance records found" | errNoPerformanceRecords |
+
  
-## 3. Development Timeline (7-8 Days)
- 
-| Day | Task |
-|-----|------|
-| Day 1 | Setup Angular, .NET Core API, SQL Server |
-| Day 2 | Implement Authentication (JWT) |
-| Day 3 | Self-Review & Feedback System |
-| Day 4 | Manager Evaluation Workflow |
-| Day 5 | Reports & Notifications |
-| Day 6 | UI Enhancements & Real-time Updates |
-| Day 7 | Testing (Unit & E2E) + Deployment |
- 
-## 4. Additional Enhancements
+## 3. Additional Enhancements
 ✅ **Performance History Logs** – Track all evaluations and feedback
 ✅ **Approval Workflow** – Multi-level reviews (Manager → HR → Admin)
 ✅ **Role-based Access** – Employees review themselves, Managers evaluate
 ✅ **Real-time Notifications** – Employees get feedback alerts
 ✅ **Reports & Analytics** – HR/Admin can track performance trends
  
-## 5. Client-Side Routing (Angular)
+## 4. Client-Side Routing (Angular)
  
 ```typescript
 const routes: Routes = [
