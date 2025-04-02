@@ -8,6 +8,7 @@ namespace Server.Repository.IRepo
         Task<List<RoleDTO>> getRole();
         Task<List<managerListDTO>> getAllManager();
         Task<List<CriteriaListDTO>> getAllCriteria();
+        Task<DashboardData> getDashboardData(string token);
         Task<bool> AddCriteria(string token, CriteriaDTO creteria);
         Task<bool> AddStatus(string token, StatusDTO status);
     }

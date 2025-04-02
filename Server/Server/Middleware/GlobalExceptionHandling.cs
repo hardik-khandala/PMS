@@ -34,7 +34,7 @@ namespace Server.Middleware
                 error = "An unexpected error occured",
                 detail = ex.Message
             });
-
+            Console.WriteLine(result);
             return context.Response.WriteAsync(result);
         }
     }

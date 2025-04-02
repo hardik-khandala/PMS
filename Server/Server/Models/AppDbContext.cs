@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Server.Models.DTOs;
 
 namespace Server.Models;
 
@@ -21,8 +22,6 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
-    public virtual DbSet<Feedback> Feedbacks { get; set; }
-
     public virtual DbSet<Goal> Goals { get; set; }
 
     public virtual DbSet<Notification> Notifications { get; set; }
@@ -31,9 +30,12 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<PredefinedCriterion> PredefinedCriteria { get; set; }
 
+    public virtual DbSet<ReportView> ReportViews { get; set; }
+
     public virtual DbSet<RoleTable> RoleTables { get; set; }
 
     public virtual DbSet<StatusTable> StatusTables { get; set; }
+    public virtual DbSet<GoalListDTO> GoalList { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -41,6 +43,10 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<GoalListDTO>(entity =>
+        {
+            entity.HasNoKey();
+        });
         modelBuilder.Entity<AuditLog>(entity =>
         {
             entity.HasKey(e => e.LogId).HasName("PK__AuditLog__7839F64DDDB54D17");
@@ -85,6 +91,8 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.EmpId).HasName("PK__Employee__AFB3EC0D6498B7DF");
+
+            entity.ToTable(tb => tb.HasTrigger("trg_AuditLog_Employees"));
 
             entity.HasIndex(e => e.UserName, "UQ__Employee__66DCF95CA484119B").IsUnique();
 
@@ -140,39 +148,11 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__Employees__roleI__76969D2E");
         });
 
-        modelBuilder.Entity<Feedback>(entity =>
-        {
-            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__2613FD2479D46E07");
-
-            entity.ToTable("Feedback");
-
-            entity.Property(e => e.FeedbackId).HasColumnName("feedbackId");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime")
-                .HasColumnName("createdAt");
-            entity.Property(e => e.Message)
-                .HasMaxLength(255)
-                .HasColumnName("message");
-            entity.Property(e => e.ReceiverId).HasColumnName("receiverId");
-            entity.Property(e => e.SenderId).HasColumnName("senderId");
-
-            entity.HasOne(d => d.Receiver).WithMany(p => p.FeedbackReceivers)
-                .HasForeignKey(d => d.ReceiverId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Feedback__receiv__1BC821DD");
-
-            entity.HasOne(d => d.Sender).WithMany(p => p.FeedbackSenders)
-                .HasForeignKey(d => d.SenderId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Feedback__sender__1AD3FDA4");
-        });
-
         modelBuilder.Entity<Goal>(entity =>
         {
             entity.HasKey(e => e.GoalId).HasName("PK__Goal__7E225EB155547F10");
 
-            entity.ToTable("Goal");
+            entity.ToTable("Goal", tb => tb.HasTrigger("trg_AuditLog_Goal"));
 
             entity.Property(e => e.GoalId).HasColumnName("goalId");
             entity.Property(e => e.CreatedAt).HasColumnName("createdAt");
@@ -241,7 +221,7 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => e.ReviewId).HasName("PK__Perfoman__2ECD6E0489CEBCAD");
 
-            entity.ToTable("PerfomanceReview");
+            entity.ToTable("PerfomanceReview", tb => tb.HasTrigger("trg_AuditLog_PerfomanceReview"));
 
             entity.Property(e => e.ReviewId).HasColumnName("reviewId");
             entity.Property(e => e.CreatedAt)
@@ -333,6 +313,34 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.ModifyByNavigation).WithMany(p => p.PredefinedCriterionModifyByNavigations)
                 .HasForeignKey(d => d.ModifyBy)
                 .HasConstraintName("FK__Predefine__modif__3B40CD36");
+        });
+
+        modelBuilder.Entity<ReportView>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("ReportView");
+
+            entity.Property(e => e.CriteriaName)
+                .HasMaxLength(255)
+                .HasColumnName("criteriaName");
+            entity.Property(e => e.DeptId).HasColumnName("deptId");
+            entity.Property(e => e.EmployeeName).HasMaxLength(50);
+            entity.Property(e => e.EndDate).HasColumnName("endDate");
+            entity.Property(e => e.Improvement)
+                .HasMaxLength(255)
+                .HasColumnName("improvement");
+            entity.Property(e => e.ManagerFeedback)
+                .HasMaxLength(255)
+                .HasColumnName("managerFeedback");
+            entity.Property(e => e.ManagerName).HasMaxLength(50);
+            entity.Property(e => e.ManagerRating).HasColumnName("managerRating");
+            entity.Property(e => e.ReviewId).HasColumnName("reviewId");
+            entity.Property(e => e.SelfRating).HasColumnName("selfRating");
+            entity.Property(e => e.StartDate).HasColumnName("startDate");
+            entity.Property(e => e.Strength)
+                .HasMaxLength(255)
+                .HasColumnName("strength");
         });
 
         modelBuilder.Entity<RoleTable>(entity =>

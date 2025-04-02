@@ -39,10 +39,6 @@ public partial class Employee
 
     public virtual Department Dept { get; set; } = null!;
 
-    public virtual ICollection<Feedback> FeedbackReceivers { get; set; } = new List<Feedback>();
-
-    public virtual ICollection<Feedback> FeedbackSenders { get; set; } = new List<Feedback>();
-
     public virtual ICollection<Goal> GoalCreatedByNavigations { get; set; } = new List<Goal>();
 
     public virtual ICollection<Goal> GoalEmps { get; set; } = new List<Goal>();

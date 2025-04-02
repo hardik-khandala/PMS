@@ -1,0 +1,804 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\hardik.khandala\\Project\\Server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\notificationrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\notificationrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\employeerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\employeerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\reportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\reportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\ireportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\ireportrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\goalrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\goalrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\reviewrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\reviewrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\reportview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\reportview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\datarepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\datarepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\middleware\\globalexceptionhandling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\middleware\\globalexceptionhandling.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\listsdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\listsdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\idatarepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\idatarepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\datacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\datacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\enum\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\enum\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\services\\smtpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\services\\smtpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\services\\s3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\services\\passwordservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\services\\duedateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\services\\duedateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\ireviewrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\ireviewrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\inotificationrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\inotificationrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\igoalrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\igoalrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\iauthrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\iauthrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\statustable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\statustable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\roletable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\roletable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\predefinedcriterion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\predefinedcriterion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\perfomancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\perfomancereview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\reviewsdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\reviewsdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\goaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\goaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\models\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\models\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\goalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\goalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\irepo\\iemployeerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\irepo\\iemployeerepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\libwkhtmltox.dll||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\libwkhtmltox.dll||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|d:\\hardik.khandala\\project\\server\\server\\repository\\authrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E263714D-0E0A-4D2A-ACC1-3DA6DCA0FB0D}|Server\\Server.csproj|solutionrelative:server\\repository\\authrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "PerfomanceReview.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\PerfomanceReview.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\PerfomanceReview.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\PerfomanceReview.cs",
+              "RelativeToolTip": "Server\\Models\\PerfomanceReview.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:16.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReviewRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\ReviewRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\ReviewRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\ReviewRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\ReviewRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T07:52:15.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ReportRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\ReportRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\ReportRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\ReportRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\ReportRepo.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAqwKEAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T04:57:10.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GoalRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\GoalRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\GoalRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\GoalRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\GoalRepo.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAIwHIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:24:48.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\AppDbContext.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "Server\\Models\\AppDbContext.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAwC8AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:30:45.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IReportRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IReportRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IReportRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IReportRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IReportRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:32.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ReportController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:15:33.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Program.cs",
+              "RelativeDocumentMoniker": "Server\\Program.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Program.cs",
+              "RelativeToolTip": "Server\\Program.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwCMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:40:35.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\EmployeeRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\EmployeeRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\EmployeeRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\EmployeeRepo.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAIwNIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:02:16.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotificationRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\NotificationRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\NotificationRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\NotificationRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\NotificationRepo.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwB4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T03:42:17.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PredefinedCriterion.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\PredefinedCriterion.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\PredefinedCriterion.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\PredefinedCriterion.cs",
+              "RelativeToolTip": "Server\\Models\\PredefinedCriterion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:17.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "RoleTable.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\RoleTable.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\RoleTable.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\RoleTable.cs",
+              "RelativeToolTip": "Server\\Models\\RoleTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:17.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "StatusTable.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\StatusTable.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\StatusTable.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\StatusTable.cs",
+              "RelativeToolTip": "Server\\Models\\StatusTable.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:18.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IAuthRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IAuthRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IAuthRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IAuthRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IAuthRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:23.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportView.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\ReportView.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\ReportView.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\ReportView.cs",
+              "RelativeToolTip": "Server\\Models\\ReportView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T10:58:32.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IDataRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IDataRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IDataRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IDataRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IDataRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:24.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IGoalRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IGoalRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IGoalRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IGoalRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IGoalRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:28.755Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DataRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\DataRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\DataRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\DataRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\DataRepo.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAIwDgAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T11:40:03.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "INotificationRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\INotificationRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\INotificationRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\INotificationRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\INotificationRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:30.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Enum\\Enums.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Enum\\Enums.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Enum\\Enums.cs",
+              "RelativeToolTip": "Server\\Models\\Enum\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T08:40:45.616Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Notification.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Notification.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Notification.cs",
+              "RelativeToolTip": "Server\\Models\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:15.528Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Goal.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Goal.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Goal.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Goal.cs",
+              "RelativeToolTip": "Server\\Models\\Goal.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:14.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Employee.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Employee.cs",
+              "RelativeToolTip": "Server\\Models\\Employee.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAcwCcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:13.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Department.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Department.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\Department.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\Department.cs",
+              "RelativeToolTip": "Server\\Models\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:12.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "AuditLog.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\AuditLog.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\AuditLog.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\AuditLog.cs",
+              "RelativeToolTip": "Server\\Models\\AuditLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:16:11.757Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ReviewController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\ReviewController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\ReviewController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\ReviewController.cs",
+              "RelativeToolTip": "Server\\Controllers\\ReviewController.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:15:44.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "GoalController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\GoalController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\GoalController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\GoalController.cs",
+              "RelativeToolTip": "Server\\Controllers\\GoalController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T06:15:27.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IReviewRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IReviewRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IReviewRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IReviewRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IReviewRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:08:20.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "libwkhtmltox.dll",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\libwkhtmltox.dll",
+              "RelativeDocumentMoniker": "Server\\libwkhtmltox.dll",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\libwkhtmltox.dll",
+              "RelativeToolTip": "Server\\libwkhtmltox.dll",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001697|",
+              "WhenOpened": "2025-03-25T08:56:47.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SMTPService.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\SMTPService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\SMTPService.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\SMTPService.cs",
+              "RelativeToolTip": "Server\\Services\\SMTPService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T08:56:06.494Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "PasswordService.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\PasswordService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\PasswordService.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\PasswordService.cs",
+              "RelativeToolTip": "Server\\Services\\PasswordService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T08:56:02.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "S3Service.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\S3Service.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\S3Service.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\S3Service.cs",
+              "RelativeToolTip": "Server\\Services\\S3Service.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAqwBMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T08:56:01.769Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\appsettings.json",
+              "RelativeDocumentMoniker": "Server\\appsettings.json",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\appsettings.json",
+              "RelativeToolTip": "Server\\appsettings.json",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-25T06:07:50.118Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "NotificationHub.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Hubs\\NotificationHub.cs",
+              "RelativeDocumentMoniker": "Server\\Hubs\\NotificationHub.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Hubs\\NotificationHub.cs",
+              "RelativeToolTip": "Server\\Hubs\\NotificationHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T07:31:11.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "DueDateService.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\DueDateService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\DueDateService.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\DueDateService.cs",
+              "RelativeToolTip": "Server\\Services\\DueDateService.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAwwCkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T06:13:00.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "authController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\authController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\authController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\authController.cs",
+              "RelativeToolTip": "Server\\Controllers\\authController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T05:46:49.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\TokenService.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Services\\TokenService.cs",
+              "RelativeToolTip": "Server\\Services\\TokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T05:08:19.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\LoginDTO.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\LoginDTO.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\LoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:53:43.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GlobalExceptionHandling.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Middleware\\GlobalExceptionHandling.cs",
+              "RelativeDocumentMoniker": "Server\\Middleware\\GlobalExceptionHandling.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Middleware\\GlobalExceptionHandling.cs",
+              "RelativeToolTip": "Server\\Middleware\\GlobalExceptionHandling.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:38:21.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "AuthRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\AuthRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\AuthRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\AuthRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\AuthRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:31:23.424Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RegisterDTO.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\RegisterDTO.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\RegisterDTO.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\RegisterDTO.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\RegisterDTO.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:11:18.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "IEmployeeRepo.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IEmployeeRepo.cs",
+              "RelativeDocumentMoniker": "Server\\Repository\\IRepo\\IEmployeeRepo.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Repository\\IRepo\\IEmployeeRepo.cs",
+              "RelativeToolTip": "Server\\Repository\\IRepo\\IEmployeeRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:07:21.56Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "Server\\Controllers\\EmployeeController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAIwCEAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T04:01:52.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DataController.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\DataController.cs",
+              "RelativeDocumentMoniker": "Server\\Controllers\\DataController.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Controllers\\DataController.cs",
+              "RelativeToolTip": "Server\\Controllers\\DataController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAcwGcAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T12:10:01.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "GoalDTO.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\GoalDTO.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\GoalDTO.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\GoalDTO.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\GoalDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T12:08:01.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "EmployeeDTO.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\EmployeeDTO.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\EmployeeDTO.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\EmployeeDTO.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\EmployeeDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T12:07:59.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "ReviewsDTOs.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\ReviewsDTOs.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\ReviewsDTOs.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\ReviewsDTOs.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\ReviewsDTOs.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T12:04:49.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ListsDTOs.cs",
+              "DocumentMoniker": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\ListsDTOs.cs",
+              "RelativeDocumentMoniker": "Server\\Models\\DTOs\\ListsDTOs.cs",
+              "ToolTip": "D:\\hardik.khandala\\Project\\Server\\Server\\Models\\DTOs\\ListsDTOs.cs",
+              "RelativeToolTip": "Server\\Models\\DTOs\\ListsDTOs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-22T12:01:35.092Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

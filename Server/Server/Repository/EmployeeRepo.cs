@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Server.Models;
 using Server.Models.DTOs;
 using Server.Repository.IRepo;
@@ -36,9 +38,33 @@ namespace Server.Repository
             return res;
         }
 
-        public async Task<List<EmployeeDTO>> GetAllEmp()
+        public async Task<List<EmployeeDTO>> GetAllEmp(string? search, int? deptId, string? orderBy)
         {
-            var data = await _context.Employees.Include(e => e.Dept).Include(e => e.Role).Where(e => e.IsDeleted == false)
+            var data = _context.Employees.Include(e => e.Dept).Include(e => e.Role).Where(e => e.IsDeleted == false);
+
+            if (deptId.HasValue && deptId > 0)
+            {
+                data = data.Where(e => e.DeptId == deptId);
+            };
+
+            if (!search.IsNullOrEmpty())
+            {
+                data = data.Where(e => e.EmpName.ToLower().Contains(search.ToLower()));
+            }
+            if (!orderBy.IsNullOrEmpty())
+            {
+                if (orderBy == "asc")
+                {
+                    data = data.OrderBy(e => e.EmpName);
+                }
+                else if(orderBy == "dsc")
+                {
+                    data = data.OrderByDescending(e => e.EmpName);
+                }
+            }
+
+
+            var res = await data
                 .Select(e => new EmployeeDTO
                 {
                     UserName = e.UserName,
@@ -49,7 +75,24 @@ namespace Server.Repository
                     JoiningDate = e.JoiningDate,
                     Role = e.Role.RoleName
                 }).ToListAsync();
-            return data;
+            return res;
+
+
+            //var parameters = new[]
+            //{
+            //    new SqlParameter("@Search", search ?? (object)DBNull.Value),
+            //    new SqlParameter("@DeptId", deptId ?? (object)DBNull.Value),
+            //    new SqlParameter("@PageNumber", 1),
+            //    new SqlParameter("@PageSize", 5)
+            //};
+
+            //var employees = await _context.EmpSP
+            //    //.FromSqlRaw("EXEC GetEmployeeData")
+            //    .FromSqlRaw("EXEC GetEmployeeData @Search, @DeptId, @PageNumber, @PageSize", parameters)
+
+            //    .ToListAsync();
+
+            //return employees;
         }
 
         public async Task<bool> editEmp(string token, int empId, RegisterDTO registerDTO)
@@ -70,30 +113,71 @@ namespace Server.Repository
                 emp.Email = registerDTO.Email;
                 emp.ManagerId = registerDTO.ManagerId;
                 emp.PasswordHash = _passwordService.HashPassword(registerDTO.PasswordHash);
-                emp.ModifyAt = DateOnly.FromDateTime(DateTime.UtcNow);
+                emp.ModifyAt = DateOnly.FromDateTime(DateTime.Now);
                 emp.ModiftyBy = Convert.ToInt32(id);
 
                 await _context.SaveChangesAsync();
 
                 string body = $@"
-                <html>
-                <head>
-                <style>
-                    p{{
-                        color: red;
-                    }}
-                </style>
-                </head>
-                <body>
-                    <h2>Welcome {registerDTO.EmpName}</h2>
- 
-                    <p>Note: Do not share your credetials with anyone!!</p> 
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }}
+        h2 {{
+            color: #007bff;
+        }}
+        h3 {{
+            color: #555;
+        }}
+        p {{
+            color: #e74c3c;
+            font-weight: bold;
+        }}
+        .footer {{
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }}
+        .credentials {{
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }}
+        .note {{
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #721c24;
+        }}
+    </style>
+</head>
+<body>
+    <h2>Welcome, {registerDTO.EmpName}!</h2>
+    
+    <div class='note'>
+        <p>Note: Do not share your credentials with anyone! Keep them secure.</p>
+    </div>
+    
+    <div class='credentials'>
+        <h3>Account Details:</h3>
+        <h4><strong>Username:</strong> {registerDTO.UserName}</h4>
+        <h4><strong>Password:</strong> {registerDTO.PasswordHash}</h4>
+    </div>
 
-                    <h3>Username: {registerDTO.UserName}</h3>
-                    <h3>Password: {registerDTO.PasswordHash}</h3>
-
-                </body>
-                </html>";
+    <div class='footer'>
+        <p>Thank you for registering with us. If you have any questions, feel free to reach out!</p>
+        <p>&copy; {DateTime.Now.Year} PMS</p>
+    </div>
+</body>
+</html>";
                 await _smtpService.SendEmailAsync(registerDTO.Email, "Your Details has been Changed", body);
                 return true;
             }

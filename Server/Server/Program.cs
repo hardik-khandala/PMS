@@ -1,3 +1,5 @@
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -38,6 +40,19 @@ namespace Server
                         ValidAudience = builder.Configuration["Jwt:Audience"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
                     };
+                    options.Events = new JwtBearerEvents()
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var token = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(token) && path.StartsWithSegments("/notification"))
+                            {
+                                context.Token = token;
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
                 });
 
             builder.Services.AddCors(options =>
@@ -46,21 +61,28 @@ namespace Server
                 {
                     builder.AllowAnyMethod()
                            .AllowAnyHeader()
-                           .AllowAnyOrigin();
+                           .WithOrigins("http://localhost:4200");
                 });
             });
 
             builder.Services.AddSignalR();
+
+            builder.Services.AddHostedService<DueDateService>();
 
             builder.Services.AddScoped<IAuthRepo, AuthRepo>();
             builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             builder.Services.AddScoped<IReviewRepo, ReviewRepo>();
             builder.Services.AddScoped<IDataRepo, DataRepo>();
             builder.Services.AddScoped<IGoalRepo, GoalRepo>();
+            builder.Services.AddScoped<INotificationRepo, NotificationRepo>();
+            builder.Services.AddScoped<IReportRepo, ReportRepo>();
 
             builder.Services.AddScoped<TokenService>();
             builder.Services.AddScoped<PasswordService>();
             builder.Services.AddScoped<SMTPService>();
+            builder.Services.AddScoped<S3Service>();
+            builder.Services.AddSingleton<IConverter, SynchronizedConverter>(sp => new SynchronizedConverter(new PdfTools()));
+            builder.Services.AddMemoryCache();
 
             builder.Services.AddControllers().AddJsonOptions(ops => ops.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -106,10 +128,11 @@ namespace Server
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             //Add support to logging request with SERILOG
-            app.UseSerilogRequestLogging();
+            //app.UseSerilogRequestLogging();
 
             //Use Global exception handler
             app.UseExceptionHandler(_ => { });

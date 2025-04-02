@@ -55,24 +55,66 @@ namespace Server.Repository
                 await _context.SaveChangesAsync();
 
                 string body = $@"
-                <html>
-                <head>
-                <style>
-                    p{{
-                        color: red;
-                    }}
-                </style>
-                </head>
-                <body>
-                    <h2>Welcome {registerDTO.EmpName}</h2>
- 
-                    <p>Note: Do not share your credetials with anyone!!</p> 
+<html>
+<head>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }}
+        h2 {{
+            color: #007bff;
+        }}
+        h3 {{
+            color: #555;
+        }}
+        p {{
+            color: #e74c3c;
+            font-weight: bold;
+        }}
+        .footer {{
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }}
+        .credentials {{
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }}
+        .note {{
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #721c24;
+        }}
+    </style>
+</head>
+<body>
+    <h2>Welcome, {registerDTO.EmpName}!</h2>
+    
+    <div class='note'>
+        <p>Note: Do not share your credentials with anyone! Keep them secure.</p>
+    </div>
+    
+    <div class='credentials'>
+        <h3>Account Details:</h3>
+        <h4><strong>Username:</strong> {registerDTO.UserName}</h4>
+        <h4><strong>Password:</strong> {registerDTO.PasswordHash}</h4>
+    </div>
 
-                    <h3>Username: {registerDTO.UserName}</h3>
-                    <h3>Password: {registerDTO.PasswordHash}</h3>
+    <div class='footer'>
+        <p>Thank you for registering with us. If you have any questions, feel free to reach out!</p>
+        <p>&copy; {DateTime.Now.Year} PMS</p>
+    </div>
+</body>
+</html>";
 
-                </body>
-                </html>";
                 await _smtpService.SendEmailAsync(registerDTO.Email, "Welcome to PMS - Sign in Details", body);
                 return true;
             }

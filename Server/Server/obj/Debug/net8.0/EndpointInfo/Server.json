@@ -67,6 +67,18 @@
         }
       }
     },
+    "/api/Data/dashboardData": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Data/getAllDept": {
       "get": {
         "tags": [
@@ -212,7 +224,39 @@
             "required": true,
             "schema": {
               "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deptId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -288,10 +332,67 @@
         }
       }
     },
-    "/api/Goal/GetAllGoals": {
+    "/api/Goal/GetGoal/{goalId}": {
       "get": {
         "tags": [
           "Goal"
+        ],
+        "parameters": [
+          {
+            "name": "goalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Goal/GetAllGoals/{pageNumber}": {
+      "get": {
+        "tags": [
+          "Goal"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statusId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -331,7 +432,7 @@
         }
       }
     },
-    "/api/Goal/EditGoal": {
+    "/api/Goal/EditGoal/{goalId}": {
       "put": {
         "tags": [
           "Goal"
@@ -339,7 +440,8 @@
         "parameters": [
           {
             "name": "goalId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -372,7 +474,7 @@
         }
       }
     },
-    "/api/Goal/DeleteGoal": {
+    "/api/Goal/DeleteGoal/{goalId}": {
       "delete": {
         "tags": [
           "Goal"
@@ -380,6 +482,109 @@
         "parameters": [
           {
             "name": "goalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/GetAllNotification": {
+      "get": {
+        "tags": [
+          "notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/MarkAsRead/{Id}": {
+      "put": {
+        "tags": [
+          "notification"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/notification/ClearAll": {
+      "put": {
+        "tags": [
+          "notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Report/GetAllReport/{pageNumber}": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "deptId",
             "in": "query",
             "schema": {
               "type": "integer",
@@ -394,10 +599,67 @@
         }
       }
     },
-    "/api/Review/SelfReviewList": {
+    "/api/Report/GenerateReport/{reviewId}": {
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "name": "reviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Review/SelfReviewList/{pageNumber}": {
       "get": {
         "tags": [
           "Review"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statusId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -428,10 +690,36 @@
         }
       }
     },
-    "/api/Review/managerReviewList": {
+    "/api/Review/managerReviewList/{pageNumber}": {
       "get": {
         "tags": [
           "Review"
+        ],
+        "parameters": [
+          {
+            "name": "pageNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rating",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -515,6 +803,13 @@
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "managerFeedback",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -630,37 +925,49 @@
         "additionalProperties": false
       },
       "LoginDTO": {
+        "required": [
+          "passwordHash",
+          "userName"
+        ],
         "type": "object",
         "properties": {
           "userName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "passwordHash": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "RegisterDTO": {
+        "required": [
+          "deptId",
+          "empName",
+          "passwordHash",
+          "roleId",
+          "userName"
+        ],
         "type": "object",
         "properties": {
           "empName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "userName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "email": {
             "type": "string",
+            "format": "email",
             "nullable": true
           },
           "passwordHash": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "deptId": {
             "type": "integer",
@@ -689,6 +996,10 @@
         "additionalProperties": false
       },
       "managerReviewDTO": {
+        "required": [
+          "managerFeedback",
+          "managerRating"
+        ],
         "type": "object",
         "properties": {
           "reviewId": {
@@ -696,17 +1007,27 @@
             "format": "int32"
           },
           "managerRating": {
+            "maximum": 5,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "managerFeedback": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
       "selfReviewDTO": {
+        "required": [
+          "criteriaId",
+          "endDate",
+          "improvement",
+          "selfRating",
+          "startDate",
+          "strength"
+        ],
         "type": "object",
         "properties": {
           "startDate": {
@@ -718,16 +1039,18 @@
             "format": "date"
           },
           "selfRating": {
+            "maximum": 5,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "strength": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "improvement": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "criteriaId": {
             "type": "integer",

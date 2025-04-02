@@ -159,3 +159,9 @@ D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\Microsoft.Extensions.H
 D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
 D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\DinkToPdf.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\AWSSDK.Core.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\AWSSDK.S3.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\hardik.khandala\Project\Server\Server\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

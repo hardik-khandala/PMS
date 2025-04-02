@@ -16,12 +16,23 @@ namespace Server.Controllers
             _reviewRepo = reviewRepo;
         }
         [Authorize]
-        [HttpGet("SelfReviewList")]
-        public async Task<IActionResult> selfReviewList()
+        [HttpGet("SelfReviewList/{pageNumber}")]
+        public async Task<IActionResult> selfReviewList(int pageNumber,[FromQuery] int pageSize, [FromQuery] string? search,[FromQuery] int? statusId)
         {
             var token = Request.Headers.Authorization.ToString().Split(" ")[1];
-            var data = await _reviewRepo.selfReviewList(token);
-            return Ok(data);
+            var data = await _reviewRepo.selfReviewList(token, search, statusId);
+
+            int total = data.Count();
+            int totalPage = (int)Math.Ceiling(total / (double)pageSize);
+
+            var result = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var response = new
+            {
+                Data = result,
+                PageNumber = total == 0 ? 0 : pageNumber,
+                TotalPage = totalPage,
+            };
+            return Ok(response);
         }
 
         [Authorize]
@@ -33,12 +44,24 @@ namespace Server.Controllers
         }
 
         [Authorize]
-        [HttpGet("managerReviewList")]
-        public async Task<IActionResult> managerReviewList()
+        [HttpGet("managerReviewList/{pageNumber}")]
+        public async Task<IActionResult> managerReviewList(int pageNumber, [FromQuery] string? search, [FromQuery] int? rating)
         {
             var token = Request.Headers.Authorization.ToString().Split(" ")[1];
-            var data = await _reviewRepo.managerReviewList(token);
-            return Ok(data);
+            var data = await _reviewRepo.managerReviewList(token, search, rating);
+
+            int total = data.Count();
+            int pageSize = 5;
+            int totalPage = (int)Math.Ceiling(total / (double)pageSize);
+
+            var result = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var response = new
+            {
+                Data = result,
+                PageNumber = total == 0 ? 0 : pageNumber,
+                TotalPage = totalPage,
+            };
+            return Ok(response);
         }
 
         [Authorize]
@@ -69,10 +92,10 @@ namespace Server.Controllers
 
         [Authorize]
         [HttpPut("ManagerRevise/{id}")]
-        public async Task<IActionResult> managerRevise(int id)
+        public async Task<IActionResult> managerRevise(int id,[FromQuery] string managerFeedback)
         {
             var token = Request.Headers.Authorization.ToString().Split(" ")[1];
-            var res = await _reviewRepo.managerRevise(token, id);
+            var res = await _reviewRepo.managerRevise(token, id, managerFeedback);
             if (res)
             {
                 return Ok(new { msg = "Submit for Revise Review" });

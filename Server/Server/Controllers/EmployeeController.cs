@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Server.Models;
 using Server.Models.DTOs;
 using Server.Repository.IRepo;
+using System.Linq;
 
 namespace Server.Controllers
 {
@@ -28,20 +29,18 @@ namespace Server.Controllers
         }
 
         [HttpGet("getEmployee/{pageNumber}")]
-        public async Task<IActionResult> GetAllEmployees(int pageNumber)
+        public async Task<IActionResult> GetAllEmployees(int pageNumber = 1,[FromQuery] int pageSize = 5, [FromQuery] string? search = null, [FromQuery] int? deptId = null, [FromQuery] string? orderBy = null)
         {
-            var data = await _employeeRepo.GetAllEmp();
+            var data = await _employeeRepo.GetAllEmp(search, deptId, orderBy);
             int total = data.Count();
-            int pageSize = 5;
             int totalPage = (int)Math.Ceiling(total / (double)pageSize);
 
             var result = data.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
             var response = new
             {
                 Data = result,
-                PageNumber = pageNumber,
+                PageNumber = total == 0 ? 0 : pageNumber,
                 TotalPage = totalPage,
-
             };
             return Ok(response);
         }

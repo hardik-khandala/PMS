@@ -32,7 +32,7 @@ namespace Server.Services
                 claims: claims, 
                 issuer: _config["Jwt:Issuer"], 
                 audience: _config["Jwt:Audience"], 
-                expires: DateTime.Now.AddDays(1), 
+                expires: DateTime.Now.AddHours(6), 
                 signingCredentials: creds
             );
 

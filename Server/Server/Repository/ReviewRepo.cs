@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Server.Hubs;
 using Server.Models;
 using Server.Models.DTOs;
+using Server.Models.Enum;
 using Server.Repository.IRepo;
 using Server.Services;
 
@@ -19,24 +21,33 @@ namespace Server.Repository
             _tokenService = tokenService;
             _hubContext = hubContext;
         }
-        public async Task<List<selfReviewListDTO>> selfReviewList(string token)
+        public async Task<List<selfReviewListDTO>> selfReviewList(string token, string? search, int? statusId)
         {
             var list = _tokenService.GetData(token);
             var id = list.FirstOrDefault(e => e.Type == "id")?.Value;
-            var res = await _context.PerfomanceReviews.Where(e => e.EmpId == Convert.ToInt32(id) && e.IsDeleted == false)
-                .Select(e => new selfReviewListDTO
-                {
-                    ReviewId = e.ReviewId,
-                    ManagerName = e.Manager.EmpName,
-                    StartDate = e.StartDate,
-                    EndDate = e.EndDate,
-                    Title = e.Criteria.CriteriaName,
-                    SelfRating = e.SelfRating,
-                    ManagerRating = e.ManagerRating,
-                    ManagerFeedback = e.ManagerFeedback,
-                    Status = e.Status.Status,
-                    CreatedAt = (DateTime)e.CreatedAt
-                }).ToListAsync();
+            var data = _context.PerfomanceReviews.Where(e => e.EmpId == Convert.ToInt32(id) && e.IsDeleted == false);
+            if (statusId.HasValue && statusId > 0)
+            {
+                data = data.Where(r => r.StatusId == statusId);
+            };
+            if (!search.IsNullOrEmpty())
+            {
+                data = data.Where(e => e.Manager.EmpName.ToLower().Contains(search.ToLower()) || e.Criteria.CriteriaName.ToLower().Contains(search.ToLower()) || e.ReviewId.ToString().Contains(search));
+            };
+            var res = await data.Select(e => new selfReviewListDTO
+            {
+                ReviewId = e.ReviewId,
+                ManagerName = e.Manager.EmpName,
+                StartDate = e.StartDate,
+                EndDate = e.EndDate,
+                Title = e.Criteria.CriteriaName,
+                SelfRating = e.SelfRating,
+                ManagerRating = e.ManagerRating,
+                ManagerFeedback = e.ManagerFeedback,
+                Status = e.Status.Status,
+                CreatedAt = (DateTime)e.CreatedAt
+            }).ToListAsync();
+
             return res;
         }
 
@@ -47,32 +58,43 @@ namespace Server.Repository
             var result = new selfReviewDTO
             {
                 CriteriaId = res.CriteriaId,
-                StartDate = res.StartDate,  
+                StartDate = res.StartDate,
                 EndDate = res.EndDate,
                 SelfRating = res.SelfRating,
                 Improvement = res.Improvement,
                 Strength = res.Strength
             };
-            return result; 
+            return result;
         }
 
-        public async Task<List<managerReviewList>> managerReviewList(string token)
+        public async Task<List<managerReviewList>> managerReviewList(string token, string? search, int? rating)
         {
             var list = _tokenService.GetData(token);
             var id = list.FirstOrDefault(e => e.Type == "id")?.Value;
-            var res = await _context.PerfomanceReviews.Include(e => e.Emp).Where(e => e.ManagerId == Convert.ToInt32(id) && e.IsDeleted == false && e.StatusId == 1)
-                .Select(e => new managerReviewList
-                {
-                    ReviewId = e.ReviewId,
-                    EmpName = e.Emp.UserName,
-                    StartDate = e.StartDate,
-                    Title = e.Criteria.CriteriaName,
-                    EndDate = e.EndDate,
-                    SelfRating = e.SelfRating,
-                    Strength = e.Strength,
-                    Improvement = e.Improvement,
-                    CreatedAt = (DateTime)e.CreatedAt
-                }).ToListAsync();
+            var data = _context.PerfomanceReviews.Include(e => e.Emp).Where(e => e.ManagerId == Convert.ToInt32(id) && e.IsDeleted == false && e.StatusId == 1);
+
+
+            if (rating.HasValue && rating > 0)
+            {
+                data = data.Where(r => r.SelfRating == rating);
+            };
+            if (!search.IsNullOrEmpty())
+            {
+                data = data.Where(e => e.Emp.EmpName.ToLower().Contains(search.ToLower()) || e.Criteria.CriteriaName.ToLower().Contains(search.ToLower()));
+            };
+
+            var res = await data.Select(e => new managerReviewList
+            {
+                ReviewId = e.ReviewId,
+                EmpName = e.Emp.EmpName,
+                StartDate = e.StartDate,
+                Title = e.Criteria.CriteriaName,
+                EndDate = e.EndDate,
+                SelfRating = e.SelfRating,
+                Strength = e.Strength,
+                Improvement = e.Improvement,
+                CreatedAt = (DateTime)e.CreatedAt
+            }).ToListAsync();
 
             return res;
         }
@@ -94,7 +116,7 @@ namespace Server.Repository
                     StartDate = selfReview.StartDate,
                     EndDate = selfReview.EndDate,
                     CreatedBy = Convert.ToInt32(id),
-                    StatusId = 1,
+                    StatusId = Convert.ToInt32(Status.Pending),
                     CriteriaId = selfReview.CriteriaId
                 };
                 await _context.PerfomanceReviews.AddAsync(review);
@@ -113,15 +135,15 @@ namespace Server.Repository
             {
                 var list = _tokenService.GetData(token);
                 var ManagerId = list.FirstOrDefault(e => e.Type == "id")?.Value;
-                var review = await _context.PerfomanceReviews.FirstOrDefaultAsync(e => e.ReviewId == managerReview.ReviewId);
+                var review = await _context.PerfomanceReviews.Include(c => c.Criteria).Include(c => c.Manager).FirstOrDefaultAsync(e => e.ReviewId == managerReview.ReviewId);
                 if (review is null)
                 {
                     return false;
                 }
                 review.ManagerRating = managerReview.ManagerRating;
                 review.ManagerFeedback = managerReview.ManagerFeedback;
-                review.ModifyAt = DateTime.UtcNow;
-                review.StatusId = 2;
+                review.ModifyAt = DateTime.Now;
+                review.StatusId = Convert.ToInt32(Status.Approve);
                 review.ModifyBy = Convert.ToInt32(ManagerId);
                 //await _context.SaveChangesAsync();
 
@@ -130,7 +152,7 @@ namespace Server.Repository
 
                 var notification = new Notification
                 {
-                    CreatedAt = DateTime.UtcNow,
+                    CreatedAt = DateTime.Now,
                     EmpId = review.EmpId,
                     Message = message,
                     IsRead = false,
@@ -139,7 +161,12 @@ namespace Server.Repository
                 await _context.Notifications.AddAsync(notification);
                 await _context.SaveChangesAsync();
 
-                await _hubContext.Clients.User(empId).SendAsync("ReceiveNotification", message);
+                NotificationHub._connections.TryGetValue(empId, out string connectionId);
+                if (connectionId.IsNullOrEmpty() == false)
+                {
+                    await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", message);
+                }
+
                 return true;
             }
             catch
@@ -148,23 +175,41 @@ namespace Server.Repository
             }
         }
 
-        public async Task<bool> managerRevise(string token, int id)
+        public async Task<bool> managerRevise(string token, int id, string managerFeedback)
         {
             try
             {
                 var list = _tokenService.GetData(token);
                 var ManagerId = list.FirstOrDefault(e => e.Type == "id")?.Value;
-                var data = await _context.PerfomanceReviews.FirstOrDefaultAsync(e => e.ReviewId == id);
+                var data = await _context.PerfomanceReviews.Include(e => e.Criteria).Include(e => e.Manager).FirstOrDefaultAsync(e => e.ReviewId == id);
 
                 if (data is null)
                 {
                     return false;
                 }
                 data.ModifyBy = Convert.ToInt32(ManagerId);
-                data.ModifyAt = DateTime.UtcNow;
-                data.StatusId = 3;
+                data.ModifyAt = DateTime.Now;
+                data.StatusId = Convert.ToInt32(Status.Revision);
+                data.ManagerFeedback = managerFeedback;
+
+                var empId = data.EmpId.ToString();
+                var message = $"Your Review for {data.Criteria.CriteriaName} has been Rejected by {data.Manager.EmpName}";
+
+                var notification = new Notification
+                {
+                    CreatedAt = DateTime.Now,
+                    EmpId = data.EmpId,
+                    Message = message,
+                    IsRead = false,
+                };
+                await _context.Notifications.AddAsync(notification);
                 await _context.SaveChangesAsync();
 
+                NotificationHub._connections.TryGetValue(empId, out string connectionId);
+                if (connectionId.IsNullOrEmpty() == false)
+                {
+                    await _hubContext.Clients.Client(connectionId).SendAsync("ReceiveNotification", message);
+                }
                 return true;
             }
             catch
@@ -183,11 +228,11 @@ namespace Server.Repository
                 }
                 review.StartDate = selfReview.StartDate;
                 review.EndDate = selfReview.EndDate;
-                review.StatusId = 1;
+                review.StatusId = Convert.ToInt32(Status.Pending);
                 review.Improvement = selfReview.Improvement;
-                review.SelfRating = selfReview.SelfRating; 
+                review.SelfRating = selfReview.SelfRating;
                 review.Strength = selfReview.Strength;
-                review.ModifyAt = DateTime.UtcNow;
+                review.ModifyAt = DateTime.Now;
                 review.ModifyBy = review.EmpId;
 
                 await _context.SaveChangesAsync();
@@ -212,6 +257,6 @@ namespace Server.Repository
             return true;
         }
 
-       
+
     }
 }

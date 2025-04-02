@@ -3,6 +3,8 @@ using Server.Models;
 using Server.Models.DTOs;
 using Server.Repository.IRepo;
 using Server.Services;
+using System.Security.AccessControl;
+using System.Security.Claims;
 
 namespace Server.Repository
 {
@@ -52,7 +54,7 @@ namespace Server.Repository
 
         public async Task<List<CriteriaListDTO>> getAllCriteria()
         {
-            var res = await _context.PredefinedCriteria
+            var res = await _context.PredefinedCriteria.Where(c => c.IsDeleted == false)
                 .Select(c => new CriteriaListDTO
                 {
                     CriteriaId = c.CriteriaId,
@@ -102,6 +104,40 @@ namespace Server.Repository
             catch
             {
                 return false;
+            }
+        }
+
+        public async Task<DashboardData> getDashboardData(string token)
+        {
+            var list = _tokenService.GetData(token);
+            var id = list.FirstOrDefault(e => e.Type == "id")?.Value;
+            var role = list.FirstOrDefault(e => e.Type == ClaimTypes.Role)?.Value;
+
+            var emp = await _context.Employees.Where(e => e.IsDeleted == false).ToListAsync();
+            var review = await _context.PerfomanceReviews.Where(e => e.IsDeleted == false).ToListAsync();
+            var goal = await _context.Goals.Where(e => e.IsDeleted == false).ToListAsync();
+            var report = await _context.PerfomanceReviews.Where(r => r.StatusId == 2 && r.IsDeleted == false).ToListAsync();
+
+            if (role == "Admin" || role == "HR")
+            {
+                var response = new DashboardData
+                {
+                    TotalEmployee = emp.Count(),
+                    TotalReview = review.Count(),
+                    TotalGoal = goal.Count(),
+                    TotalReport = report.Count()
+                };
+                return response;
+            }
+            else
+            {
+                var response = new DashboardData
+                {
+                    TotalEmployee = emp.Count(),
+                    TotalReview = review.Where(r=>r.EmpId == Convert.ToInt32(id)).Count(),
+                    TotalGoal = goal.Where(r => r.EmpId == Convert.ToInt32(id)).Count(),
+                };
+                return response;
             }
         }
     }

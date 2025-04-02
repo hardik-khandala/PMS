@@ -1,5 +1,8 @@
-﻿namespace Server.Models.DTOs
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Server.Models.DTOs
 {
+    [Keyless]
     public class EmployeeDTO
     {
         public int EmpId { get; set; }
