@@ -3,16 +3,17 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReviewService } from '../../services/review.service';
-import { SelfReview } from '../../models/selfReview.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Criteria } from '../../models/criteria.model';
 import { DataService } from '../../services/data.service';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { SelfReview } from '../../models/review.model';
+import { Criteria } from '../../models/data.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-self-review',
-  imports: [NavbarComponent, CommonModule, ReactiveFormsModule],
+  imports: [NavbarComponent, CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './self-review.component.html',
   styleUrl: './self-review.component.css'
 })
@@ -30,10 +31,11 @@ export class SelfReviewComponent {
   errorMessage!: string;
   flag: boolean = false;
   isEditing: boolean = false;
+  isEndDateInvalid: boolean = false;
 
   editId!: number
 
-  constructor(private reviewService: ReviewService, private dataService: DataService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router) {
+  constructor(private reviewService: ReviewService, private dataService: DataService, private toastr: ToastrService, private route: ActivatedRoute, private router: Router, public authService: AuthService) {
     this.editId = parseInt(this.route.snapshot.paramMap.get('id')!)
     if (this.editId) {
       reviewService.getSelfReview(this.editId).subscribe({
@@ -110,4 +112,16 @@ export class SelfReviewComponent {
     }
 
   }
+  onStartDateChange() {
+    if (this.selfReviewForm.get('endDate')?.value && new Date(this.selfReviewForm.get('endDate')?.value as any) <= new Date(this.selfReviewForm.get('endDate')?.value as any)) {
+      this.isEndDateInvalid = true;  // Mark End Date as invalid
+    } else {
+      this.isEndDateInvalid = false;  // Valid End Date
+    }
+  }
+
+  addCriteria() {
+
+  }
+
 }

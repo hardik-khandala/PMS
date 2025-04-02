@@ -71,7 +71,8 @@ CREATE TABLE Goal(
 	createdAt DATE NOT NULL,
 	isDeleted BIT DEFAULT 0,
 	modifyBy INT FOREIGN KEY REFERENCES Employees(empId),
-	modifyAt DATE
+	modifyAt DATE, 
+	dueDate DATE
 )
 
 CREATE TABlE Notification(
@@ -93,15 +94,6 @@ CREATE TABLE AuditLogs(
 );
 
 
-CREATE TABLE Feedback(
-    feedbackId INT IDENTITY(1,1) PRIMARY KEY,
-    senderId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
-    receiverId INT FOREIGN KEY REFERENCES Employees(empId) NOT NULL,
-    message NVARCHAR(255) NOT NULL,
-    createdAt DATETIME DEFAULT GETDATE()
-);
-
-
 SELECT * FROM Department
 SELECT * FROM RoleTable
 SELECT * FROM Employees
@@ -110,6 +102,4 @@ SELECT * FROM PredefinedCriteria
 SELECT * FROM StatusTable
 SELECT * FROM Goal
 SELECT * FROM Notification
-SELECT * FROM AuditLogs
-SELECT * FROM Feedback
-
+SELECT * FROM AuditLogs	 

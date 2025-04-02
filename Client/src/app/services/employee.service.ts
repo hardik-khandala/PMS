@@ -18,8 +18,8 @@ export class EmployeeService {
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
-  getAllEmployee(pageNumber: number) {
-    return this.http.get<any>(BaseUrl + `/api/Employee/getEmployee/${pageNumber}`)
+  getAllEmployee(pageNumber: number, pageSize: number, name: string, deptId: number | string, orderBy: string) {
+    return this.http.get<any>(BaseUrl + `/api/Employee/getEmployee/${pageNumber}?pageSize=${pageSize}&search=${name??''}&deptId=${deptId??''}&orderBy=${orderBy??''}`)
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 

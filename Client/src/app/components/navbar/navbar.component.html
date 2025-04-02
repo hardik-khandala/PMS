@@ -8,21 +8,12 @@
                     aria-controls="mobile-menu" aria-expanded="false">
                     <span class="absolute -inset-0.5"></span>
                     <span class="sr-only">Open main menu</span>
-                    <!--
-              Icon when menu is closed.
-  
-              Menu open: "hidden", Menu closed: "block"
-            -->
+
                     <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                         aria-hidden="true" data-slot="icon">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
-                    <!--
-              Icon when menu is open.
-  
-              Menu open: "block", Menu closed: "hidden"
-            -->
                     <svg class="hidden size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                         aria-hidden="true" data-slot="icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -48,54 +39,102 @@
                             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manager
                             Review</a>
                         <a [routerLink]="['/performance-report']" [routerLinkActive]="['text-white', 'bg-gray-900']"
-                            *ngIf="auth.roleMethod() == 'Admin'"
+                            *ngIf="auth.roleMethod() == 'Admin' || auth.roleMethod() == 'HR'"
                             class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Performance
                             Reports</a>
                     </div>
                 </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button type="button"
-                    class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-                    <span class="absolute -inset-1.5"></span>
-                    <span class="sr-only">View notifications</span>
-                    <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        aria-hidden="true" data-slot="icon">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                    </svg>
-                </button>
-
-                <!-- Profile dropdown -->
-                <div class="relative ml-3">
-
+                <div class="relative">
                     <div class="relative flex items-center">
-                        <span class="mr-3 text-white text-sm font-semibold">User</span> <!-- Display username -->
-                        <button type="button" (click)="openMenu()"
-                            class=" rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
-
-                            <img class="w-8 h-8 rounded-full" src="profile.png" alt="User Profile Picture">
-
+                        <button type="button" (click)="openNotificationMenu()"
+                            class="relative rounded-full text-white text-sm focus:outline-none">
+                            <span *ngIf="count"
+                                class="absolute top-[-5px] right-[-5px] bg-red-500 text-white text-xs px-2 rounded-full w-4 h-4 flex items-center justify-center">
+                            {{count}}
+                            </span>
+                            <i class="fa-solid fa-bell text-2xl"></i>
                         </button>
                     </div>
 
-                    <!-- Dropdown Menu -->
-                    <div *ngIf="open"
-                        class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md border border-gray-600 bg-gray-800 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
 
-                        <!-- View Reviews Link -->
-                        <a class="block px-4 py-2 text-sm text-white text-center hover:bg-indigo-600 hover:text-white"
-                            [routerLink]="'/reviews'" id="user-menu-item-1">View Your Reviews</a>
+                    <!-- Modal Background -->
+                    <div *ngIf="openNotifications"
+                        class="fixed inset-0 z-50 bg-opacity-50 backdrop-blur-sm flex justify-center items-center transition-all duration-2000 ease-in-out">
+                        <!-- Modal Container with Animation -->
+                        <div class="bg-gray-800 w-96 mt-48 rounded-lg shadow-lg transform translate-y-[-100%] transition-transform duration-2000 ease-in-out"
+                            [class.translate-y-0]="openNotifications">
+                            <div class="flex justify-between items-center p-4 border-b border-gray-600">
+                                <h3 class="text-lg font-semibold text-white">Notifications</h3>
+                                <!-- Close Button -->
+                                <button (click)="openNotifications = false" class="text-white text-xl">&times;</button>
+                            </div>
 
-                        <!-- Sign Out Button -->
-                        <a class="block px-4 py-2 text-sm text-white text-center hover:bg-indigo-600 hover:text-white"
-                            (click)="auth.logout()" id="user-menu-item-2">Sign out</a>
+                            <!-- Notifications List -->
+                            <div class="max-h-70 overflow-y-auto p-4">
+                                <!-- Check if there are no notifications -->
+                                <div *ngIf="notificationList.length === 0; else showNotifications">
+                                    <span class="text-white px-4 py-2 flex justify-center">
+                                        No Notifications
+                                    </span>
+                                </div>
+
+                                <!-- Template for displaying notifications -->
+                                <ng-template #showNotifications>
+                                    <!-- Loop through notification list -->
+                                    <div *ngFor="let item of notificationList"
+                                        class="max-h-70 overflow-y-auto p-4 px-4 py-2 text-sm text-white hover:text-white">
+                                        <div class="flex flex-col items-start space-y-1">
+                                            <span>{{ item.message }}</span> <!-- Notification Message -->
+                                            <span class="text-gray-400 text-xs">{{ item.createdAt | timeAgo }}</span>
+                                            <!-- Time below message -->
+                                        </div>
+                                        <button class="text-xs text-indigo-400 hover:text-indigo-600"
+                                            (click)="markRead(item.notificationId)">Mark as Read</button>
+                                    </div>
+
+                                    <!-- Clear All Notifications Button -->
+                                    <div class="mt-4 text-center">
+                                        <button (click)="clearAllNotifications()"
+                                            class="text-xs text-red-500 hover:text-red-400">
+                                            Clear All Notifications
+                                        </button>
+                                    </div>
+                                </ng-template>
+                            </div>
+
+
+                        </div>
                     </div>
+
+
+
                 </div>
 
+                <!-- User Profile Section -->
+                <div class="relative flex items-center ml-4">
+                    <span class="mr-3 text-white text-sm font-semibold">{{username}}</span>
+                    <!-- Display dynamic user name -->
+                    <button type="button" (click)="openMenu()"
+                        class="rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
+                        <img class="w-8 h-8 rounded-full" src="profile.png" alt="User Profile Picture">
+                    </button>
+                </div>
+
+                <!-- User Dropdown Menu -->
+                <div *ngIf="open"
+                    class="absolute right-0 z-10 mt-40 w-48 origin-top-right rounded-md border border-gray-600 bg-gray-800 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none">
+                    <a class="block px-4 py-2 text-sm text-white text-center hover:bg-indigo-600 hover:text-white"
+                        [routerLink]="'/reviews'" id="user-menu-item-1">View Your Reviews</a>
+                    <a class="block px-4 py-2 text-sm text-white text-center hover:bg-indigo-600 hover:text-white"
+                        (click)="auth.logout()" id="user-menu-item-2">Sign out</a>
+                </div>
             </div>
+
+
         </div>
-    </div>
+    </div>  
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu" *ngIf="openNavbar">
@@ -114,7 +153,7 @@
                 class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Manager
                 Review</a>
             <a [routerLink]="['/performance-report']" [routerLinkActive]="['text-white', 'bg-gray-900']"
-                *ngIf="auth.roleMethod() == 'Admin'"
+                *ngIf="auth.roleMethod() == 'Admin' || auth.roleMethod() == 'HR'"
                 class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Performance</a>
         </div>
     </div>

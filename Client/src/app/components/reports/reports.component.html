@@ -1,1 +1,125 @@
 <app-navbar></app-navbar>
+<div class="text-white flex flex-col items-center mt-10 px-5">
+    <div class="container mt-10 flex justify-end gap-6">
+        <button (click)="downloadData()" 
+            class="bg-indigo-500 hover:bg-gray-700 hover:text-indigo-500 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out">
+            <i class="fa-solid fa-download"></i> Download CSV
+        </button>
+    </div>
+    <div class="w-full container mb-5 mt-3 flex flex-wrap justify-between gap-6">
+        <!-- Start Date Input -->
+        <div class="w-full sm:w-1/4">
+            <label for="" class="block text-sm font-medium text-white">Start Date</label>
+            <input type="date" name="" id="" [(ngModel)]="startDate" (change)="onStartDateChange()"
+                class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+        </div>
+
+        <!-- End Date Input -->
+        <div class="w-full sm:w-1/4">
+            <label for="" class="block text-sm font-medium text-white">End Date</label>
+            <input type="date" name="" id="" [(ngModel)]="endDate" [min]="startDate" (change)="onEndDateChange()"
+                [attr.disabled]="isEndDateInvalid ? true : null"
+                class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+        </div>
+
+        <!-- Department Dropdown -->
+        <div class="w-full sm:w-1/4">
+            <label for="department" class="block text-sm font-medium text-white">Department</label>
+            <select name="department" id="department" [(ngModel)]="deptId" (change)="onDeptChange()"
+                class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+                <option value="">Select Department</option>
+                <option *ngFor="let item of departments" [value]="item.deptId">{{ item.deptName }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="w-full container bg-gray-800 rounded-lg shadow-lg ">
+        <div class="flex justify-between px-6 py-3 bg-indigo-500 text-black rounded-t-lg">
+            <h2 class="font-bold text-xl">Performance Review</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full border border-gray-700 rounded-md text-center">
+                <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
+                    <tr>
+                        <th class="px-6 py-3 border-b border-gray-600">#</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Employee Name</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Manager Name</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Criteria Name</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Employee Rating</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Strength</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Improvement</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Manager Rating</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Manager Feedback</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let item of reviewList; let i = index" class="odd:bg-gray-700 even:bg-gray-600">
+
+                        <td class="px-6 py-3 border-b border-gray-600">{{ (pageNumber - 1) * pageSize + (i + 1) }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.employeeName }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.managerName }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.criteriaName }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.selfRating }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.strength }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.improvement }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.managerRating }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.managerFeedback }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600 min-w-40">
+                            <button
+                                class="bg-transparent hover:bg-gray-700 text-indigo-400 hover:text-indigo-600 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                                (click)="downloadEmpData(i)">
+                                <i class="fa-solid fa-file-excel"></i>
+                            </button>
+                            <button
+                                class="bg-transparent text-red-500 hover:text-red-600 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                                (click)="downloadEmpDataPdf(item.reviewId)">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Pagination Section -->
+    <div class="flex items-center justify-between p-4 container">
+        <div class="flex items-center gap-4">
+            <button (click)="previousPage()" [disabled]="pageNumber <= 1"
+                class="rounded-md border border-gray-300 p-2 text-sm shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M12.79 3.29a.75.75 0 0 1-.02 1.06L8.832 12l3.938 7.65a.75.75 0 0 1-1.06 1.06L6.29 12l6.44-7.65a.75.75 0 0 1 1.06-.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+
+            <p class="text-gray-700 text-sm">
+                Page <strong class="font-bold text-white">{{ pageNumber }}</strong> of <strong
+                    class="font-bold text-white">{{ totalPage }}</strong>
+            </p>
+
+            <button (click)="nextPage()" [disabled]="pageNumber == totalPage"
+                class="rounded-md border border-gray-300 p-2 text-sm  shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M11.21 20.71a.75.75 0 0 1 .02-1.06L15.168 12l-3.938-7.65a.75.75 0 0 1 1.06-1.06L17.71 12l-6.44 7.65a.75.75 0 0 1-1.06.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="relative">
+            <select [(ngModel)]="pageSize" (change)="onPageSizeChange()"
+                class="block w-full p-2 border text-whit bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transform transition-transform hover:scale-105 active:scale-95">
+                <option [value]="5">5 per page</option>
+                <option [value]="10">10 per page</option>
+                <option [value]="20">20 per page</option>
+                <option [value]="50">50 per page</option>
+            </select>
+        </div>
+    </div>
+</div>

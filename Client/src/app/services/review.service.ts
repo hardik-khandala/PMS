@@ -1,12 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SelfReview } from '../models/selfReview.model';
+import { managerReview, SelfReview } from '../models/review.model';
 import { BaseUrl } from '../config/environment';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
-import { SelfReviewList } from '../models/selfReviewList.model';
+import { catchError, throwError } from 'rxjs';
 import { getHeaders } from '../config/headers';
-import { ManagerReviewList } from '../models/managerReviewList.model';
-import { managerReview } from '../models/managerReview.model';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -16,9 +13,8 @@ export class ReviewService {
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-
-  selfReviewList() {
-    return this.http.get<SelfReviewList[]>(BaseUrl + '/api/Review/SelfReviewList', getHeaders(this.tokenService.token.value))
+  selfReviewList(pageNumber: number, pageSize: number, name: string, statusId: number | string) {
+    return this.http.get<any>(BaseUrl + `/api/Review/SelfReviewList/${pageNumber}?pageSize=${pageSize}&search=${name??''}&statusId=${statusId??''}`, getHeaders(this.tokenService.token.value))
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
@@ -27,8 +23,8 @@ export class ReviewService {
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
-  managerReviewList() {
-    return this.http.get<ManagerReviewList[]>(BaseUrl + '/api/Review/managerReviewList', getHeaders(this.tokenService.token.value))
+  managerReviewList(pageNumber: number, pageSize: number, name: string, rating: number | string) {
+    return this.http.get<any>(BaseUrl + `/api/Review/managerReviewList/${pageNumber}?pageSize=${pageSize}&search=${name??''}&rating=${rating??''}`, getHeaders(this.tokenService.token.value))
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
@@ -42,8 +38,8 @@ export class ReviewService {
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
-  managerRevise(id: number) {
-    return this.http.put<{ msg: string }>(BaseUrl + `/api/Review/ManagerRevise/${id}`, {}, getHeaders(this.tokenService.token.value))
+  managerRevise(id: number, managerFeedback: string) {
+    return this.http.put<{ msg: string }>(BaseUrl + `/api/Review/ManagerRevise/${id}?managerFeedback=${managerFeedback}`, {}, getHeaders(this.tokenService.token.value))
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 

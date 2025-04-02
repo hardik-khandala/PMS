@@ -1,51 +1,115 @@
 <app-navbar></app-navbar>
 <div class="text-white flex flex-col items-center mt-10 px-4">
-    <div class="w-full max-w-7xl overflow-x-auto bg-gray-800 rounded-lg shadow-lg">
+    <div class="w-full container mt-10 mb-5 flex flex-wrap justify-between gap-6">
+        <div class="flex w-full sm:w-1/4">
+            <div class="relative">
+                <input type="text" name="search" id="search" placeholder="Search" [(ngModel)]="search"
+                    class="block w-full rounded-md bg-gray-800 pl-10 pr-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+                <i
+                    class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+            <button class="bg-indigo-600 ml-2 px-3 rounded-xl hover:bg-indigo-800" (click)="onSearch()">Search</button>
+        </div>
+        <div class="w-full sm:w-1/4">
+            <select name="status" id="status" [(ngModel)]="rating" (change)="onStatusChange()"
+                class="block w-full rounded-md bg-gray-800 px-3 py-1.5  text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+                <option value="">Select Rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+    <div class="w-full container overflow-x-auto bg-gray-800 rounded-lg shadow-lg">
         <div class="flex justify-between px-6 py-3 bg-indigo-500 text-black rounded-t-lg">
             <h2 class="font-bold text-xl">Employee Review List</h2>
         </div>
-        <table class="w-full border border-gray-700 rounded-md text-center">
-            <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
-                <tr>
-                    <th class="px-6 py-3 border-b border-gray-600">Review ID</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Employee Name</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Start Date</th>
-                    <th class="px-6 py-3 border-b border-gray-600">End Date</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Title</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Self Rating</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Strength</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Improvement</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Created At</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of List" class="odd:bg-gray-700 even:bg-gray-600">
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.reviewId }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.empName }}</td>
-                    <td class="py-3 border-b border-gray-600">{{ item.startDate | date }}</td>
-                    <td class="py-3 border-b border-gray-600">{{ item.endDate | date }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.title }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.selfRating }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.strength }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.improvement }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.createdAt | date}}</td>
-                    <td class="py-3 min-w-40 border-b border-gray-600">
-                        <button (click)="openModal(item.reviewId)"
-                            class="bg-green-500 hover:bg-green-700 px-2 py-1 rounded mx-1">
-                            Approve
-                        </button>
-                        <button (click)="revise(item.reviewId)"
-                            class="bg-red-500 hover:bg-red-700 px-2 py-1 rounded mx-1">
-                            Revise
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="w-full border border-gray-700 rounded-md text-center">
+                <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
+                    <tr>
+                        <th class="px-6 py-3 border-b border-gray-600">#</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Employee Name</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Start Date</th>
+                        <th class="px-6 py-3 border-b border-gray-600">End Date</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Title</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Self Rating</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Strength</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Improvement</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Created At</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of List; let i = index" class="odd:bg-gray-700 even:bg-gray-600">
+                        <td class="px-6 py-3 border-b border-gray-600">{{ (pageNumber - 1) * pageSize + (i + 1) }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.empName }}</td>
+                        <td class="py-3 border-b border-gray-600">{{ item.startDate | date }}</td>
+                        <td class="py-3 border-b border-gray-600">{{ item.endDate | date }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.title }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.selfRating }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.strength }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.improvement }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.createdAt | date}}</td>
+                        <td class="py-3 min-w-40 border-b border-gray-600">
+                            <button (click)="openModal(item.reviewId)"
+                                class="bg-green-500 hover:bg-green-700 px-2 py-1 rounded mx-1">
+                                Approve
+                            </button>
+                            <button (click)="openReviseModel(item.reviewId)"
+                                class="bg-red-500 hover:bg-red-700 px-2 py-1 rounded mx-1">
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Pagination Section -->
+    <div class="flex items-center justify-between p-4 container">
+        <div class="flex items-center gap-4">
+            <button (click)="previousPage()" [disabled]="pageNumber <= 1"
+                class="rounded-md border border-gray-300 p-2 text-sm shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M12.79 3.29a.75.75 0 0 1-.02 1.06L8.832 12l3.938 7.65a.75.75 0 0 1-1.06 1.06L6.29 12l6.44-7.65a.75.75 0 0 1 1.06-.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+
+            <p class="text-gray-700 text-sm">
+                Page <strong class="font-bold text-white">{{ pageNumber }}</strong> of <strong
+                    class="font-bold text-white">{{ totalPage }}</strong>
+            </p>
+
+            <button (click)="nextPage()" [disabled]="pageNumber == totalPage"
+                class="rounded-md border border-gray-300 p-2 text-sm  shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M11.21 20.71a.75.75 0 0 1 .02-1.06L15.168 12l-3.938-7.65a.75.75 0 0 1 1.06-1.06L17.71 12l-6.44 7.65a.75.75 0 0 1-1.06.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="relative">
+            <select [(ngModel)]="pageSize" (change)="onPageSizeChange()"
+                class="block w-full p-2 border text-whit bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transform transition-transform hover:scale-105 active:scale-95">
+                <option [value]="5">5 per page</option>
+                <option [value]="10">10 per page</option>
+                <option [value]="20">20 per page</option>
+                <option [value]="50">50 per page</option>
+            </select>
+        </div>
     </div>
 </div>
 
+
+
+<!-- Approve Model  -->
 <div *ngIf="showModal"
     class="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
     <div class="bg-gray-700 text-white p-6 rounded-lg shadow-lg w-96 relative transition-transform duration-500 transform scale-95 translate-y-[-50px] opacity-0"
@@ -86,6 +150,55 @@
             <!-- Submit Button -->
             <div class="flex justify-end mt-4">
                 <button type="button" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded mx-1" (click)="submit()">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Revise Model  -->
+<div *ngIf="showModalRevise"
+    class="fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
+    <div class="bg-gray-700 text-white p-6 rounded-lg shadow-lg w-96 relative transition-transform duration-500 transform scale-95 translate-y-[-50px] opacity-0"
+        [ngClass]="{'translate-y-0 scale-100 opacity-100': showModalRevise}">
+        <button (click)="closeModal()" class="absolute top-2 right-2 w-10 h-10">
+            <i class="fa-solid fa-circle-xmark fa-xl"></i>
+        </button>
+
+        <h2 class="text-lg font-semibold mb-4 text-white">Revise Review</h2>
+
+        <form class="space-y-6" [formGroup]="managerReview">
+            <!-- <div>
+            <label for="selfRating" class="block text-sm/6 font-medium text-white">Manager Rating</label>
+            <div class="mt-2">
+                <select name="selfrating" id="selfrating" formControlName="managerRating"
+                    class="block w-full rounded-md bg-gray-800 px-3 py-2 text-white  outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <span *ngIf="managerReview.get('managerRating')?.hasError('required') && flag"
+                class="text-red-500 px-2">Self Rating is required.</span>
+        </div> -->
+
+            <div>
+                <label for="strength" class="block text-sm/6 font-medium text-white">Manager Feedback</label>
+                <div class="mt-2">
+                    <textarea name="feedback" id="feedback" formControlName="managerFeedback"
+                        class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white  outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"></textarea>
+                </div>
+                <span *ngIf="managerReview.get('managerFeedback')?.hasError('required') && flag"
+                    class="text-red-500 px-2">Feedback is required.</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end mt-4">
+                <button type="button" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded mx-1" (click)="revise()">
                     Submit
                 </button>
             </div>

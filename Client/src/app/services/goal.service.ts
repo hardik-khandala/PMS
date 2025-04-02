@@ -13,8 +13,23 @@ export class GoalService {
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-  getAllGoals() {
-    return this.http.get<Goal[]>(BaseUrl + '/api/Goal/GetAllGoals', getHeaders(this.tokenService.token.value))
+  getGoal(id: number) {
+    return this.http.get<Goal>(BaseUrl + `/api/Goal/GetGoal/${id}`, getHeaders(this.tokenService.token.value))
+      .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
+  }
+
+  getAllGoals(pageNumber: number, pageSize: number, name: string, statusId: number | string) {
+    return this.http.get<any>(BaseUrl + `/api/Goal/GetAllGoals/${pageNumber}?pageSize=${pageSize}&search=${name??''}&statusId=${statusId??''}`, getHeaders(this.tokenService.token.value))
+      .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
+  }
+
+  addGoal(goal: Goal) {
+    return this.http.post<{ msg: string }>(BaseUrl + `/api/Goal/AddGoal`, goal, getHeaders(this.tokenService.token.value))
+      .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
+  }
+
+  editGoal(id: number, goal: Goal) {
+    return this.http.put<{ msg: string }>(BaseUrl + `/api/Goal/EditGoal/${id}`, goal, getHeaders(this.tokenService.token.value))
       .pipe(catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 

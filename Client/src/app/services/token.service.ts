@@ -7,5 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 export class TokenService {
 
   constructor() { }
-  token = new BehaviorSubject<string | null>(localStorage.getItem('token'))  
+  token = new BehaviorSubject<string | null>(localStorage.getItem('token'));  
+  username = new BehaviorSubject<string | null>(localStorage.getItem('username'));
+
+
 }

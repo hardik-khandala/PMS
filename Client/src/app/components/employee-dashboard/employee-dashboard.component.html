@@ -1,80 +1,201 @@
 <app-navbar></app-navbar>
+<div class="text-white flex flex-col items-center px-5 mt-5">
+    <div class="w-80">
+        <canvas baseChart [type]="'pie'" [datasets]="pieChartDatasets" [labels]="pieChartLabels"
+            [plugins]="pieChartPlugins" [options]="pieChartOptions" [legend]="pieChartLegend">
+        </canvas>
+    </div>
+    <div class="flex flex-wrap justify-center gap-10 mt-5 mb-5"
+        *ngIf="authService.roleMethod() == 'Admin' || authService.roleMethod() == 'HR'; else elsePart">
+        <div
+            class="bg-blue-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-blue-500 ease-in-out duration-300">
+            <h3 class="text-xl font-semibold text-white">Total Employees</h3>
+            <p class="text-3xl font-bold">{{dashboardData.totalEmployee}}</p>
+        </div>
+        <div
+            class="bg-pink-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-pink-500 ease-in-out duration-300">
+            <h3 class="text-xl font-semibold text-white">Total Reviews</h3>
+            <p class="text-3xl font-bold">{{dashboardData.totalReview}}</p>
+        </div>
 
-<div class="text-white flex flex-col items-center mt-10 px-5">
-    <div class="w-full max-w-7xl overflow-x-auto bg-gray-800 rounded-lg shadow-lg">
-        <div class="flex justify-between px-6 py-3 bg-indigo-500 text-black rounded-t-lg">
+        <div
+            class="bg-orange-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-orange-500 ease-in-out duration-300">
+            <h3 class="text-xl font-semibold text-white">Total Goals</h3>
+            <p class="text-3xl font-bold">{{dashboardData.totalGoal}}</p>
+        </div>
+
+        <div
+            class="bg-yellow-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-yellow-500 ease-in-out duration-300">
+            <h3 class="text-xl font-semibold text-white">Total Reports</h3>
+            <p class="text-3xl font-bold">{{dashboardData.totalReport}}</p>
+        </div>
+    </div>
+
+    <ng-template #elsePart>
+        <div class="flex flex-wrap justify-center gap-10 mt-5 mb-5">
+            <div
+                class="bg-blue-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-blue-500 ease-in-out duration-300">
+                <h3 class="text-xl font-semibold text-white">Total Employees</h3>
+                <p class="text-3xl font-bold">{{dashboardData.totalEmployee}}</p>
+            </div>
+
+            <div
+                class="bg-pink-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-pink-500 ease-in-out duration-300">
+                <h3 class="text-xl font-semibold text-white">Active Reviews</h3>
+                <p class="text-3xl font-bold">{{dashboardData.totalReview}}</p>
+            </div>
+
+            <div
+                class="bg-orange-400 p-5 w-50 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:shadow-2xl hover:bg-orange-500 ease-in-out duration-300">
+                <h3 class="text-xl font-semibold text-white">Active Goals</h3>
+                <p class="text-3xl font-bold">{{dashboardData.totalGoal}}</p>
+            </div>
+
+        </div>
+    </ng-template>
+
+    <div class="w-full container mb-1 mt-5 flex flex-wrap justify-between gap-6">
+        <div class="flex w-full sm:w-1/4">
+            <div class="relative">
+                <input type="text" name="start-date" id="start-date" placeholder="Search Employee" [(ngModel)]="search"
+                    class="block w-full rounded-md bg-gray-800 pl-10 pr-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+                <i
+                    class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+            <button class="bg-indigo-600 ml-2 px-3 rounded-xl hover:bg-indigo-800" (click)="onSearch()">Search</button>
+        </div>
+
+        <div class="w-full sm:w-1/4">
+            <select name="department" id="department" [(ngModel)]="deptId" (change)="onDeptChange()"
+                class="block w-full rounded-md bg-gray-800 px-3 py-1.5  text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm">
+                <option value="">Select Department</option>
+                <option *ngFor="let item of departments" [value]="item.deptId">{{ item.deptName }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="w-full container mt-2 bg-gray-800 rounded-lg shadow-lg">
+        <div class="flex justify-between px-6 py-3  bg-indigo-500 text-black rounded-t-lg">
             <h2 class="font-bold text-xl">Employee List</h2>
             <button *ngIf="authService.roleMethod() == 'Admin'" [routerLink]="['/register']"
                 class="bg-transparent hover:bg-gray-700 hover:text-indigo-500 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out">
                 <i class="fa-solid fa-user-plus"></i> Add Employee
             </button>
         </div>
-        <table class="w-full border border-gray-700 rounded-md text-center">
-            <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
-                <tr>
-                    <th class="px-6 py-3 border-b border-gray-600">EmpId</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Name</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Username</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Email</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Department</th>
-                    <th class="px-6 py-3 border-b border-gray-600">Joining Date</th>
-                    <th *ngIf="authService.roleMethod() == 'Admin'" class="px-6 py-3 border-b border-gray-600">Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of employees" class="odd:bg-gray-700 even:bg-gray-600 ">
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.empId }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.empName }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.userName }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.email }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.department }}</td>
-                    <td class="px-6 py-3 border-b border-gray-600">{{ item.joiningDate | date }}</td>
-                    <td *ngIf="authService.roleMethod() == 'Admin'" class="px-6 py-3 border-b min-w-40 border-gray-600">
-                        <button
-                            class="bg-transparent hover:bg-gray-700 text-yellow-500 hover:text-yellow-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
-                            (click)="editEmp(item.empId)">
-                            <i class="fa-solid fa-user-pen"></i> Edit
-                        </button>
-                        <button
-                            class="bg-transparent hover:bg-gray-700 text-red-500 hover:text-red-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
-                            (click)="deleteEmp(item.empId)">
-                            <i class="fa-solid fa-user-minus"></i> Delete
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="w-full border border-gray-700 rounded-md text-center">
+                <thead class="bg-gray-800 text-white uppercase text-sm sticky top-0">
+                    <tr>
+                        <th class="px-6 py-3 border-b border-gray-600">#</th>
+                        <th class="px-6 py-3 border-b border-gray-600" (click)="sortName()">Name</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Username</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Email</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Department</th>
+                        <th class="px-6 py-3 border-b border-gray-600">Joining Date</th>
+                        <th *ngIf="authService.roleMethod() == 'Admin'" class="px-6 py-3 border-b border-gray-600">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of employees; let i = index" class="odd:bg-gray-700 even:bg-gray-600 ">
+                        <td class="px-6 py-3 border-b border-gray-600">{{ (pageNumber - 1) * pageSize +( i+1) }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.empName }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.userName }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.email }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.department }}</td>
+                        <td class="px-6 py-3 border-b border-gray-600">{{ item.joiningDate | date }}</td>
+                        <td *ngIf="authService.roleMethod() == 'Admin'" class="px-6 py-3 border-b  border-gray-600">
+                            <button
+                                class="bg-transparent hover:bg-gray-700 text-yellow-500 hover:text-yellow-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                                (click)="editEmp(item.empId)">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </button>
+                            <button
+                                class="bg-transparent hover:bg-gray-700 text-red-500 hover:text-red-700 border border-transparent hover:border-gray-600 px-2 py-1 rounded mx-1 transition duration-300 ease-in-out"
+                                (click)="openModel(item.empId)">
+                                <i class="fa-solid fa-user-minus"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Pagination Section -->
-    <div class="flex items-center gap-8 m-5">
-        <!-- Previous Button -->
-        <button (click)="previousPage()" [disabled]="pageNumber <= 1"
-            class="rounded-md border border-slate-300 p-2.5 text-center text-sm transition-all shadow-sm hover:shadow-lg text-white hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z"
-                    clip-rule="evenodd" />
-            </svg>
-        </button>
+    <div class="flex items-center justify-between p-4 container mb-10">
+        <div class="flex items-center gap-4">
+            <button (click)="previousPage()" [disabled]="pageNumber <= 1"
+                class="rounded-md border border-gray-300 p-2 text-sm shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M12.79 3.29a.75.75 0 0 1-.02 1.06L8.832 12l3.938 7.65a.75.75 0 0 1-1.06 1.06L6.29 12l6.44-7.65a.75.75 0 0 1 1.06-.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
 
-        <!-- Page Info -->
-        <p class="text-gray-400">
-            Page <strong class="text-white font-bold">{{pageNumber}}</strong> of&nbsp;<strong
-                class="text-white font-bold">{{totalPage}}</strong>
-        </p>
+            <p class="text-gray-700 text-sm">
+                Page <strong class="font-bold text-white">{{ pageNumber }}</strong> of <strong
+                    class="font-bold text-white">{{ totalPage }}</strong>
+            </p>
 
-        <!-- Next Button -->
-        <button (click)="nextPage()" [disabled]="pageNumber == totalPage"
-            class="rounded-md border border-slate-300 p-2.5 text-center text-sm transition-all shadow-sm hover:shadow-lg text-white hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z"
-                    clip-rule="evenodd" />
-            </svg>
-        </button>
+            <button (click)="nextPage()" [disabled]="pageNumber == totalPage"
+                class="rounded-md border border-gray-300 p-2 text-sm  shadow-sm hover:shadow-lg disabled:opacity-50 disabled:pointer-events-none transform transition-transform hover:scale-105 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M11.21 20.71a.75.75 0 0 1 .02-1.06L15.168 12l-3.938-7.65a.75.75 0 0 1 1.06-1.06L17.71 12l-6.44 7.65a.75.75 0 0 1-1.06.02Z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="relative">
+            <select [(ngModel)]="pageSize" (change)="onPageSizeChange()"
+                class="block w-full p-2 border text-whit bg-gray-800 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm transform transition-transform hover:scale-105 active:scale-95">
+                <option [value]="5">5 per page</option>
+                <option [value]="10">10 per page</option>
+                <option [value]="20">20 per page</option>
+                <option [value]="50">50 per page</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- model -->
+    <div *ngIf="isOpen" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div
+                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div
+                                class="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-10">
+                                <svg class="size-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-base font-semibold text-indigo-500" id="modal-title">Delete Employee
+                                </h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-400">Are you sure you want to delete this Employee? All
+                                        of your data will be permanently removed. This action cannot be undone.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button (click)="deleteEmp()" type="button"
+                            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-400 sm:ml-3 sm:w-auto">Delete</button>
+                        <button (click)="closeModal()" type="button"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

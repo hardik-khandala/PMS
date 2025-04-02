@@ -1,8 +1,14 @@
 <app-navbar></app-navbar>
-<div *ngIf="!criteriaId" class="my-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+<div class="absolute right-10 mt-5" *ngIf="authService.roleMethod() == 'Admin'">
+    <button type="button" (click)="addCriteria()" [routerLink]="['/add-criteria']"
+        class="bg-indigo-600 px-4 py-2 rounded-md text-white hover:bg-indigo-500 focus:outline-none transition duration-200 ease-in-out">
+        <i class="fa-solid fa-plus"></i> Add Criteria</button>
+</div>
+<div *ngIf="!criteriaId" class="my-15 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <h3 class="text-3xl font-bold text-indigo-500 text-center mb-6 leading-tight">Select a Criteria for a Review</h3>
     <div class="flex flex-wrap gap-6 justify-center">
-        <div *ngFor="let option of criterias" class="bg-gray-800 p-6 rounded-lg max-w-sm w-full flex flex-col justify-between h-65 transform hover:translate-y-2 hover:shadow-xl hover:bg-gray-700 transition-all duration-300 ease-in-out">
+        <div *ngFor="let option of criterias"
+            class="bg-gray-800 p-6 rounded-lg max-w-sm w-full flex flex-col justify-between h-65 transform hover:translate-y-2 hover:shadow-xl hover:bg-gray-700 transition-all duration-300 ease-in-out">
             <div class="mb-4">
                 <h3 class="text-2xl font-extrabold text-indigo-400 mb-2 border-b-4 border-indigo-600 pb-2">
                     {{ option.criteriaName }}
@@ -11,7 +17,8 @@
             </div>
 
             <!-- Button always at the bottom -->
-            <button (click)="selectedOps(option)" class="w-full rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 focus:outline-none transition duration-200 ease-in-out">
+            <button (click)="selectedOps(option)"
+                class="w-full rounded-md bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 focus:outline-none transition duration-200 ease-in-out">
                 Select
             </button>
         </div>
@@ -19,7 +26,8 @@
 </div>
 
 <div *ngIf="criteriaId" class="my-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <h3 *ngIf="!isEditing; else editing" class="text-2xl font-extrabold text-indigo-400 mb-2 border-b-4 border-indigo-600 pb-2"> 
+    <h3 *ngIf="!isEditing; else editing"
+        class="text-2xl font-extrabold text-indigo-400 mb-2 border-b-4 border-indigo-600 pb-2">
         Review of {{ criteriaName }}
     </h3>
     <ng-template #editing>
@@ -32,6 +40,7 @@
             <label for="email" class="block text-sm/6 font-medium text-white">Start Date</label>
             <div class="mt-2">
                 <input type="date" name="startdate" id="startdate" formControlName="startDate"
+                    onchange="onStartDateChange()"
                     class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
             <span *ngIf="selfReviewForm.get('startDate')?.hasError('required') && flag" class="text-red-500 px-2">Start
@@ -39,9 +48,10 @@
         </div>
 
         <div>
-            <label for="password" class="block text-sm/6 font-medium text-white">End Date</label>
+            <label for="date" class="block text-sm/6 font-medium text-white">End Date</label>
             <div class="mt-2">
                 <input type="date" name="enddate" id="enddate" formControlName="endDate"
+                    [min]="selfReviewForm.get('startDate')?.value" [attr.disabled]="isEndDateInvalid ? true : null"
                     class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
             <span *ngIf="selfReviewForm.get('endDate')?.hasError('required') && flag" class="text-red-500 px-2">End

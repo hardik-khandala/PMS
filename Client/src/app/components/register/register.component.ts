@@ -3,15 +3,13 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
-import { Department } from '../../models/department.model';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Role } from '../../models/role.model';
-import { ManagerList } from '../../models/managerList.model';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
+import { Department, ManagerList, Role } from '../../models/data.model';
 
 @Component({
   selector: 'app-register',
@@ -46,6 +44,9 @@ export class RegisterComponent {
         next: (data) => {
           this.isEditing = true;
           this.registerForm.patchValue(data);
+        },
+        error: (err: HttpErrorResponse) => {
+          toast.error(err.error, "Error");
         }
       })
     }

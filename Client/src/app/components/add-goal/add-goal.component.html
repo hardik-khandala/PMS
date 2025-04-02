@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <h3 class="text-2xl font-extrabold text-indigo-400 mb-2 border-b-4 border-indigo-600 pb-2"> 
+       {{isEditing?'Update Goals':'Add Goals'}}
+    </h3>
+    <form class="space-y-6" [formGroup]="goalForm">
+        <div>
+            <label for="empName" class="block text-sm/6 font-medium text-white">Goal Title</label>
+            <div class="mt-2">
+                <input type="text" name="empName" id="empName" formControlName="title" placeholder="Title"
+                    class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            </div>
+            <span *ngIf="goalForm.get('title')?.hasError('required') && flag" class="text-red-500 px-2">Title
+                Name
+                is required.</span>
+        </div>
+
+        <div>
+            <label for="userName" class="block text-sm/6 font-medium text-white">Details</label>
+            <div class="mt-2">
+                <input type="text" name="userName" id="userName" formControlName="detail" placeholder="Details"
+                    class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white  outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            </div>
+            <span *ngIf="goalForm.get('detail')?.hasError('required') && flag" class="text-red-500 px-2">Details
+                is required.</span>
+        </div>
+
+
+        <div>
+            <label for="status" class="block text-sm/6 font-medium text-white">Status</label>
+            <div class="mt-2">
+                <select name="status" id="status" formControlName="statusId"
+                    class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white  outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <option value="">Select Status</option>
+                    <option value="1">Pending</option>
+                    <option value="4">Completed</option>
+                </select>
+            </div>
+            <span *ngIf="goalForm.get('statusId')?.hasError('required') && flag" class="text-red-500 px-2">Status
+                is required.</span>
+        </div>
+
+        <div>
+            <label for="date" class="block text-sm/6 font-medium text-white">Due Date</label>
+            <div class="mt-2">
+                <input type="date" name="duedate" id="duedate" formControlName="dueDate" [min]="todayDate"
+                    class="block w-full rounded-md bg-gray-800 px-3 py-1.5 text-white outline-1 -outline-offset-1 outline-gray-600 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            </div>
+            <span *ngIf="goalForm.get('dueDate')?.hasError('required') && flag" class="text-red-500 px-2">Due
+                Date is required.</span>
+        </div>
+
+        <div>
+            <button type="submit" (click)="submit()"
+                class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                {{ isEditing?'Update Goal': 'Add Goal'}}</button>
+        </div>
+    </form>
+</div>

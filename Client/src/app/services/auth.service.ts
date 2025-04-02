@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { jwtDecode } from "jwt-decode";
 import { getHeaders } from '../config/headers';
 import { TokenService } from './token.service';
+import { NotificationService } from './notification.service';
 
 
 @Injectable({
@@ -14,19 +15,28 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
   role!: string
-  constructor(private http: HttpClient, private route: Router, private tokenService: TokenService) { }
+  constructor(private http: HttpClient, private route: Router, private tokenService: TokenService, private ns: NotificationService) { }
   loginHandler(login: Login) {
     return this.http.post<{ token: string }>(BaseUrl + '/api/auth/Login', login)
       .pipe(
         tap((data) => {
           this.tokenService.token.next(data.token)
+          const decode = jwtDecode(data.token)
+          Object.entries(decode).forEach(x => {
+            if (x[0] == 'username') {
+              localStorage.setItem('username', x[1]);
+            }
+          })
+          this.ns.startConnection();
         }),
         catchError((err: HttpErrorResponse) => throwError(() => err)))
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.tokenService.token.next(null);
+    this.ns.stopConnection();
     this.route.navigate(['']);
   }
 
@@ -46,5 +56,17 @@ export class AuthService {
       });
     }
     return this.role;
+  }
+  isJwtExpired() {
+    const token = localStorage.getItem('token');
+    if (typeof (token) !== 'string' || !token) throw new Error('Invalid token provided');
+
+    let isJwtExpired = false;
+    const { exp } = jwtDecode(token);
+    const currentTime = new Date().getTime() / 1000;
+
+    if (currentTime > exp!) isJwtExpired = true;
+
+    return isJwtExpired;
   }
 }
